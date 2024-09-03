@@ -51,36 +51,57 @@ export default function TodoList() {
 
 
     return (
-        <div>
-            <input placeholder="Add a task"
-                value={newTodo}
-                onChange={updateTodoValue}></input>
-            <br></br>
-            <button onClick={addNewTask}>Add Task</button>
-            <br></br>
-            <br></br>
-            <br></br>
+        
+        <div className="p-4 max-w-md mx-auto bg-white shadow-lg rounded-lg m-44">
+    <input 
+        placeholder="Add a task"
+        value={newTodo}
+        onChange={updateTodoValue}
+        className="w-full p-2 border border-gray-300 rounded mb-4"
+    />
+    <button 
+        onClick={addNewTask}
+        className="w-full bg-black text-white py-2 px-4 rounded hover:bg-blue-600"
+    >
+        Add Task
+    </button>
 
+    <hr className="my-4" />
+    <h4 className="text-xl font-semibold mb-2">ToDo list</h4>
 
-            <hr></hr>
-            <h4>ToDo list </h4>
+    <ul className="space-y-2">
+        {todos.map((todo) => (
+            <li key={todo.id} className="flex justify-between items-center">
+                <span 
+                    className={todo.isDone ? "line-through" : ""}
+                >
+                    {todo.task}
+                </span>
+                <div className="space-x-2">
+                    <button 
+                        onClick={() => deleteTodo(todo.id)} 
+                        className="bg-red-500 text-white py-1 px-2 rounded hover:bg-red-600"
+                    >
+                        Delete
+                    </button>
+                    <button 
+                        onClick={() => markAsDone(todo.id)} 
+                        className="bg-green-500 text-white py-1 px-2 rounded hover:bg-green-600"
+                    >
+                        Mark As Done
+                    </button>
+                </div>
+            </li>
+        ))}
+    </ul>
 
-            <ul>
-                {todos.map((todo) => (
-                    <li key={todo.id}>
-                        <span style={todo.isDone ? { textDecorationLine:"line-through"}:{}}> 
-                        {todo.task}
-                        </span>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <button onClick={() => deleteTodo(todo.id)} >delete</button>
-                        <button onClick={() => markAsDone(todo.id)} >Mark As Done</button>
-                        
-                    </li>
-                ))}
-            </ul>
-            <br></br>
-            <button onClick={upperCaseAll}>Mark All As Done</button>
+    <button 
+        onClick={upperCaseAll}
+        className="w-full mt-4 bg-green-500 text-white py-2 px-4 rounded hover:bg-yellow-600"
+    >
+        Mark All As Done
+    </button>
+</div>
 
-        </div>
     );
 }
