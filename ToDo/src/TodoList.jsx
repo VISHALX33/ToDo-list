@@ -80,7 +80,7 @@ export default function TodoList() {
                 <div className="space-x-2">
                     <button 
                         onClick={() => deleteTodo(todo.id)} 
-                        className="bg-red-500 text-white py-1 px-2 rounded hover:bg-red-600"
+                        className="bg-red-400 text-white py-1 px-2 rounded hover:bg-red-600"
                     >
                         Delete
                     </button>
